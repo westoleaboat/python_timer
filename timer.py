@@ -20,7 +20,7 @@ class Main_content(Frame):
 
 running = False
 counter = 0
-
+# add a comment
 class Content:
     def __init__(self, root):
 
