@@ -18,12 +18,16 @@ class Main_content(Frame):
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
 
+# recognize if timer is running
 running = False
+# timer at zero
 counter = 0
-# add a comment
+
+# content class
 class Content:
     def __init__(self, root):
 
+        # stopwatch config
         def stopwatch():
             global sw_start
             global count
@@ -32,6 +36,7 @@ class Content:
                 if running:
                     global counter, display
 
+                    # manage initial delay
                     if counter == 0:
                         display = 'Starting...'
                     else:
@@ -55,24 +60,30 @@ class Content:
         def sw_start():
             global running
             global display
+            # run counter
             running = True
 
         def sw_stop():
             global running
+            # stop counter
             running = False
 
         def sw_reset():
             global counter
+            # reset counter
             counter = 0
 
+            # if reset when stop
             if running == False:
                 lbl['text']='00:00:00'
 
+            # if reset while running
             else:
                 lbl['text']='Starting...'
             
 
-        lbl = Label(text='00:00:00')
+        # timer label
+        lbl = Label(text='00:00:00', bg='#ffffff', width=30)
         lbl.pack()
 
         btn_start = Button(text='Start', command=sw_start)
@@ -90,8 +101,17 @@ class Content:
 
 def main():
     root = Tk()
+    # title
+    root.title("Simple Python timer")
+    # app size
+    root.geometry('300x200+950+540')
+    # no resize app
+    root.resizable(0,0)
+    # show content
     cnt = Content(root)
+    # call loop
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
